@@ -10,17 +10,21 @@ public class MyStepdefs {
 
     int a;
     int b;
+    String opt;
     int result;
 
-    @Given("Two input values, {int} and {int}")
-    public void two_input_values(int x, int y) {
+    Calculator calculator = new Calculator();
+
+    @Given("Two input values, {int} and {int}, and an operator {string}")
+    public void two_input_values(int x, int y, String o) {
         a = x;
         b = y;
+        opt = o;
     }
 
-    @When("I add the two values")
-    public void i_add_the_two_values() {
-        result = a + b;
+    @When("I apply the operator on the two values")
+    public void i_apply_the_operator_on_the_two_values() {
+        result = calculator.calculate(a, b, opt);
     }
 
     @Then("I expect the result {int}")
